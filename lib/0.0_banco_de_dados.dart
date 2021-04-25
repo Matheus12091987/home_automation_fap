@@ -24,13 +24,6 @@ var devicesAddrLocal = [];
 var devicesAddrRemoto = [];
 var devicesFeedback = [];
 
-// Testes
-//var testes = [];
-
-var teste = [
-  'testado', 'testei', 'testaria'
-  //List<String> testes = [],
-];
 /*######################################################
     Functions do sistema
 ######################################################*/
@@ -42,8 +35,6 @@ AdicionarUsuario(var a, var b, var c, var d, var e, var f) {
   criarAmbientes.add(d);
   incluirDevices.add(e);
   alterarSenha.add(f);
-  //teste.testado;
-  //teste[0].testes.add(2);
 }
 
 // ignore: non_constant_identifier_names
