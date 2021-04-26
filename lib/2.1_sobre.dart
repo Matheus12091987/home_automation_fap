@@ -27,8 +27,7 @@ class _SobreState extends State<Sobre> {
           Text(
               "Aplicação de funcionalidade local ou remoto de uma home automation"),
           Text(""),
-          Text(
-              '''Esta aplicação foi desenvolvida a partir de um sistema de automação onde os comandos são request http padronizadas e tem respostas http partindo de endereços fixos.        '''),
+          Text('''Esta aplicação foi desenvolvida a partir de um sistema de automação onde os comandos são request http padronizadas e tem respostas http partindo de endereços fixos.        '''),
           Text(""),
           SizedBox(height: 20),
           Image.asset('images/developer.jpg', height: 267, width: 200), //1,3353 escala da imagem

@@ -7,6 +7,7 @@
 ######################################################*/
 var posUsuarioAtual = [];
 
+
 /*######################################################
     Variaveis do Banco de Dados 
 ######################################################*/
@@ -19,7 +20,8 @@ var incluirDevices = [];
 var alterarSenha = [];
 
 // Ambientes
-var ambientes = [];
+var ambientesName = [];
+var ambientesComentario = [];
 
 // Devices
 var devicesName = [];
@@ -65,4 +67,16 @@ EditarDevice(var a, var b, var c, var d, var posicao) {
   devicesAddrLocal[posicao] = b;
   devicesAddrRemoto[posicao] = c;
   devicesFeedback[posicao] = d;
+}
+
+// ignore: non_constant_identifier_names
+AdicionarAmbiente(var a, var b) {
+  ambientesName.add(a);
+  ambientesComentario.add(b);
+}
+
+// ignore: non_constant_identifier_names
+EditarAmbiente(var a, var b, var posicao) {
+  ambientesName[posicao] = a;
+  ambientesComentario[posicao] = b;
 }

@@ -167,33 +167,48 @@ class _InclusaoUsuariosState extends State<InclusaoUsuarios> {
           context, MaterialPageRoute(builder: (context) => Ambientes()));
     } else if (_currentIndex == 2) {
       if (_txtUsuarioCadastro.text.isNotEmpty &
-          _txtSenhaCadastro.text.isNotEmpty) {
+          _txtSenhaCadastro.text.isNotEmpty & (valorRadio != 0)) {
         int j = 0;
-        for (int i = 0; i < usuarios.length; i++) {
-          if (usuarios[i] == _txtUsuarioCadastro.text) {
-            j = 1;
+        if (usuarios.length != 0) {
+          for (int i = 0; i < usuarios.length; i++) {
+            if (usuarios[i] == _txtUsuarioCadastro.text) {
+              j = 1;
+            }
+            if ((j == 0) & ((i + 1) == usuarios.length)) {
+              AdicionarUsuario(
+                  _txtUsuarioCadastro.text,
+                  _txtSenhaCadastro.text,
+                  valorRadio,
+                  valorCheckAmbiente,
+                  valorCheckDevices,
+                  valorCheckSenha);
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => UsuariosCadastrados()));
+              i = usuarios.length;
+            } else if ((j == 1) & ((i + 1) == usuarios.length)) {
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content:
+                    Text('!!!Usuario já cadastrado, verifique novamente!!!'),
+                duration: Duration(seconds: 5),
+              ));
+            }
           }
-          if ((j == 0) & ((i + 1) == usuarios.length)) {
-            AdicionarUsuario(
-                _txtUsuarioCadastro.text,
-                _txtSenhaCadastro.text,
-                valorRadio,
-                valorCheckAmbiente,
-                valorCheckDevices,
-                valorCheckSenha);
-
-            //usuarios.add(_txtUsuarioCadastro.text);
-            //senhas.add(_txtSenhaCadastro.text);
-            //niveisAcesso.add(valorRadio);
-            Navigator.pushReplacement(context,
-                MaterialPageRoute(builder: (context) => UsuariosCadastrados()));
-            i = usuarios.length;
-          } else if ((j == 1) & ((i + 1) == usuarios.length)) {
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              content: Text('!!!Usuario já cadastrado, verifique novamente!!!'),
-              duration: Duration(seconds: 5),
-            ));
-          }
+        }else{
+          AdicionarUsuario(
+            _txtUsuarioCadastro.text,
+            _txtSenhaCadastro.text,
+            valorRadio,
+            valorCheckAmbiente,
+            valorCheckDevices,
+            valorCheckSenha);
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => UsuariosCadastrados()
+            )
+          );
         }
       } else {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(

@@ -41,11 +41,43 @@ class _UsuariosCadastradosState extends State<UsuariosCadastrados> {
                   grupoUsuario = "Convidado(a)";
                 }
                 return ListTile(
-                  title: Text(
-                    usuarios[index],
-                    style: TextStyle(fontSize: 18),
+                  title: Row(
+                    children: [
+                      Expanded(child: Text(
+                        usuarios[index],
+                        style: TextStyle(fontSize: 18),
+                        overflow: TextOverflow.fade,
+                        maxLines: 2,
+                        softWrap: true,
+                      )),
+                    ],
                   ),
-                  subtitle: Text(grupoUsuario),
+                  subtitle: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Text('Usuario tipo: ' + grupoUsuario),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Text('Criar Ambientes: ' + criarAmbientes[index].toString()),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Text('Incluir Devices: ' + incluirDevices[index].toString()),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Text('Alterar Senha: ' + alterarSenha[index].toString()),
+                        ],
+                      ),
+                    ],
+                  ),
                   trailing: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -59,11 +91,6 @@ class _UsuariosCadastradosState extends State<UsuariosCadastrados> {
                                 (context) => EdicaoUsuarios(retornando: msg,)
                               )
                             );
-                            //
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              content: Text('Editar este usuario.'),
-                              duration: Duration(seconds: 2),
-                            ));
                           });
                         },
                       ),
@@ -72,6 +99,11 @@ class _UsuariosCadastradosState extends State<UsuariosCadastrados> {
                         onPressed: () {
                           setState(() {
                             usuarios.removeAt(index);
+                            senhas.removeAt(index);
+                            niveisAcesso.removeAt(index);
+                            criarAmbientes.removeAt(index);
+                            incluirDevices.removeAt(index);
+                            alterarSenha.removeAt(index);
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                               content: Text('Tarefa removida com sucesso.'),
                               duration: Duration(seconds: 2),

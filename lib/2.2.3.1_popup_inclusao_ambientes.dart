@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '0.0_banco_de_dados.dart';
+import '2.2.3_cadastro_ambientes.dart';
 
 /*########################################################
     Incluir um Novo Ambiente / Comodo
@@ -26,12 +27,52 @@ inserirNovoAmbiente(BuildContext context) {
   Widget continuaButton = TextButton(
     child: Text("Inserir"),
     onPressed: () {
-      //
+      if (nomeAmbiente.text.isEmpty || comentarioAmbiente.text.isEmpty) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text('Não deve haver campos nulos!!!'),
+          duration: Duration(seconds: 2),
+        ));
+      } else {
+        if (ambientesName.length != 0) {
+          for (int i = 0; i < ambientesName.length; i++) {
+            if (nomeAmbiente.text == ambientesName[i]) {
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: Text('Nome de ambiente já existe, tente outro!!!'),
+                duration: Duration(seconds: 2),
+              ));
+              i = ambientesName.length;
+            } else if ((i + 1) == ambientesName.length) {
+              AdicionarAmbiente(nomeAmbiente.text, comentarioAmbiente.text);
+              i = ambientesName.length;
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => AmbientesCadastrados()));
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: Text('O Ambiente foi Inserido com Sucesso!!!'),
+                duration: Duration(seconds: 2),
+              ));
+            }
+          }
+        }else{
+          AdicionarAmbiente(nomeAmbiente.text, comentarioAmbiente.text);
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+                builder: (context) => AmbientesCadastrados()));
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text('O Ambiente foi Inserido com Sucesso!!!'),
+            duration: Duration(seconds: 2),
+          ));
+        }
+      }
     },
   );
   //configura o AlertDialog
   AlertDialog alert = AlertDialog(
-    title: Text("Incluir Novo Ambiente. Usuário: " + usuarios[posUsuarioAtual[0]] + "!!!"),
+    title: Text("Incluir Novo Ambiente. Usuário: " +
+        usuarios[posUsuarioAtual[0]] +
+        "!!!"),
     content: Container(
         child: SizedBox(
       height: 260,

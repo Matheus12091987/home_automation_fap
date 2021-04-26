@@ -4,9 +4,11 @@
 
 import 'package:flutter/material.dart';
 
+import '0.0_banco_de_dados.dart';
 import '2.0_ambientes.dart';
 import '2.2_config.dart';
 import '2.2.3.1_popup_inclusao_ambientes.dart';
+import '2.2.3.2_popup_edicao_ambientes.dart';
 
 class AmbientesCadastrados extends StatefulWidget {
   @override
@@ -25,9 +27,95 @@ class _AmbientesCadastradosState extends State<AmbientesCadastrados> {
       ),
       body: Container(
         padding: EdgeInsets.all(20),
-        child: Row(children: [
+        child: Scrollbar(
+            child: Row(children: [
+          Expanded(
+            child: ListView.separated(
+              //Aparência do item da lista
+              itemBuilder: (context, index) {
+                return ListTile(
+                  title: Row(
+                    children: [
+                      Expanded(
+                          child: Text(
+                        ambientesName[index],
+                        style: TextStyle(fontSize: 18),
+                        overflow: TextOverflow.fade,
+                        maxLines: 2,
+                        softWrap: true,
+                      )),
+                    ],
+                  ),
+                  subtitle: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Expanded(
+                              child: Text(
+                            'Descrição: ' + ambientesComentario[index],
+                            overflow: TextOverflow.fade,
+                            maxLines: 5,
+                            softWrap: true,
+                          )),
+                        ],
+                      ),
+                    ],
+                  ),
+                  trailing: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      IconButton(
+                        icon: Icon(Icons.edit),
+                        onPressed: () {
+                          setState(() {
+                            //posicao_Ambiente[0] = index;
+                            edicaoDoAmbiente(context, index);
+                            //int msg = index;
+                            /*Navigator.push(
+                              context, MaterialPageRoute(builder: 
+                                (context) => EdicaoUsuarios(retornando: msg,)
+                              )
+                            );*/
+                            //
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content: Text('Editar este Ambiente.'),
+                              duration: Duration(seconds: 2),
+                            ));
+                          });
+                        },
+                      ),
+                      IconButton(
+                        icon: Icon(Icons.delete),
+                        onPressed: () {
+                          setState(() {
+                            ambientesName.removeAt(index);
+                            ambientesComentario.removeAt(index);
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content: Text('Tarefa removida com sucesso.'),
+                              duration: Duration(seconds: 2),
+                            ));
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                );
+              },
+              //Aparência do divisor
+              separatorBuilder: (context, index) {
+                return Divider(
+                  color: Colors.blue[100],
+                  thickness: 1,
+                );
+              },
+              //total de itens da lista
+              itemCount: ambientesName.length,
+            ),
+          ),
           //inserir as coisas aqui
-        ]),
+        ])),
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,

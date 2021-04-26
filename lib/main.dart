@@ -26,11 +26,13 @@ class _MenuPrincipal extends State<MenuPrincipal> {
         'http://automation.ddns.net:9001', '/status');
     AdicionarDevice('Cozinha', 1, 'http://192.168.1.2',
         'http://automation.ddns.net:9002', '/status');
-
-    ambientes.add('Entrada/Copa/Sala');
-    ambientes.add('Cozinha/Area de Serviço');
+    AdicionarAmbiente(
+        'Entrada/Copa/Sala', 'Ambiente destinado a convivência Humana');
+    AdicionarAmbiente('Cozinha/Área de Serviço',
+        'Ambiente destinado a convivência Humana e Animalesca ');
 
     posUsuarioAtual.add(0);
+    //posicao_Ambiente.add(0);
 
     super.initState();
   }

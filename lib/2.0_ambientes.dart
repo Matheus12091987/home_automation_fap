@@ -34,7 +34,7 @@ class _AmbientesState extends State<Ambientes> {
                 return ConstrainedBox(
                   constraints: BoxConstraints.tightFor(width: 200, height: 60),
                   child: ElevatedButton(
-                    child: Text(ambientes[index]),
+                    child: Text(ambientesName[index]),
                     onPressed: () {
                       
                     },
@@ -49,7 +49,7 @@ class _AmbientesState extends State<Ambientes> {
                 );
               },
               //total de itens da lista
-              itemCount: ambientes.length,
+              itemCount: ambientesName.length,
             ),
           ),
           //inserir as coisas aqui

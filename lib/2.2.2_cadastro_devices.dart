@@ -31,9 +31,17 @@ class _DevicesCadastradosState extends State<DevicesCadastrados> {
               //Aparência do item da lista
               itemBuilder: (context, index) {
                 return ListTile(
-                  title: Text(
-                    devicesName[index],
-                    style: TextStyle(fontSize: 18),
+                  title: Row(
+                    children: [
+                      Expanded(
+                          child: Text(
+                        devicesName[index],
+                        style: TextStyle(fontSize: 18),
+                        overflow: TextOverflow.fade,
+                        maxLines: 2,
+                        softWrap: true,
+                      )),
+                    ],
                   ),
                   subtitle: Column(
                     mainAxisSize: MainAxisSize.min,
@@ -41,22 +49,46 @@ class _DevicesCadastradosState extends State<DevicesCadastrados> {
                     children: [
                       Row(
                         children: [
-                          Text('Tipo: ' + devicesTipo[index].toString()),
+                          Expanded(
+                              child: Text(
+                            'Tipo: ' + devicesTipo[index].toString(),
+                            overflow: TextOverflow.fade,
+                            maxLines: 2,
+                            softWrap: true,
+                          )),
                         ],
                       ),
                       Row(
                         children: [
-                          Text('Addr Local: ' + devicesAddrLocal[index]),
+                          Expanded(
+                              child: Text(
+                            'Addr Local: ' + devicesAddrLocal[index],
+                            overflow: TextOverflow.fade,
+                            maxLines: 5,
+                            softWrap: true,
+                          )),
                         ],
                       ),
                       Row(
                         children: [
-                          Text('Addr Remoto: ' + devicesAddrRemoto[index]),
+                          Expanded(
+                              child: Text(
+                            'Addr Remoto: ' + devicesAddrRemoto[index],
+                            overflow: TextOverflow.fade,
+                            maxLines: 5,
+                            softWrap: true,
+                          )),
                         ],
                       ),
                       Row(
                         children: [
-                          Text('Tag Feedback: ' + devicesFeedback[index]),
+                          Expanded(
+                              child: Text(
+                            'Tag Feedback: ' + devicesFeedback[index],
+                            overflow: TextOverflow.fade,
+                            maxLines: 5,
+                            softWrap: true,
+                          )),
                         ],
                       ),
                     ],
@@ -86,7 +118,11 @@ class _DevicesCadastradosState extends State<DevicesCadastrados> {
                         icon: Icon(Icons.delete),
                         onPressed: () {
                           setState(() {
-                            usuarios.removeAt(index);
+                            devicesName.removeAt(index);
+                            devicesAddrLocal.removeAt(index);
+                            devicesAddrRemoto.removeAt(index);
+                            devicesTipo.removeAt(index);
+                            devicesFeedback.removeAt(index);
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                               content: Text('Tarefa removida com sucesso.'),
                               duration: Duration(seconds: 2),
@@ -118,11 +154,11 @@ class _DevicesCadastradosState extends State<DevicesCadastrados> {
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.chevron_left_rounded),
-            label: 'Retornar',           
+            label: 'Retornar',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: 'Home',           
+            label: 'Home',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.add_box_rounded),
@@ -132,15 +168,18 @@ class _DevicesCadastradosState extends State<DevicesCadastrados> {
       ),
     );
   }
+
   void onTabTapped(int index) {
     setState(() {
       _currentIndex = index;
     });
-    if(_currentIndex == 0){
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Configuracao()));
-    }else if(_currentIndex == 1){
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Ambientes()));
-    }else if(_currentIndex == 2){
+    if (_currentIndex == 0) {
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => Configuracao()));
+    } else if (_currentIndex == 1) {
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => Ambientes()));
+    } else if (_currentIndex == 2) {
       /*Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => Configuracao()
