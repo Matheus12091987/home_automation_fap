@@ -19,6 +19,12 @@ class _AmbientesCadastradosState extends State<AmbientesCadastrados> {
   int _currentIndex = 0;
 
   @override
+  // ignore: must_call_super
+  void initState() {
+    LimparAmbientes();
+    CarregarAmbiente(idUsuario[posUsuarioAtual[0]]);
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -70,15 +76,7 @@ class _AmbientesCadastradosState extends State<AmbientesCadastrados> {
                         icon: Icon(Icons.edit),
                         onPressed: () {
                           setState(() {
-                            //posicao_Ambiente[0] = index;
                             edicaoDoAmbiente(context, index);
-                            //int msg = index;
-                            /*Navigator.push(
-                              context, MaterialPageRoute(builder: 
-                                (context) => EdicaoUsuarios(retornando: msg,)
-                              )
-                            );*/
-                            //
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                               content: Text('Editar este Ambiente.'),
                               duration: Duration(seconds: 2),

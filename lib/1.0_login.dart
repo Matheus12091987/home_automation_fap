@@ -104,6 +104,7 @@ class _LoginState extends State<Login> {
                             if (_txtUsuario.text == usuarios[i] &&
                                 _txtSenha.text == senhas[i]) {
                               i = usuarios.length;
+                              LimparAmbientes();
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(

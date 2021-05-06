@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import '0.0_banco_de_dados.dart';
 import '1.0_login.dart';
 import '2.2_config.dart';
+import '2.3_ambientes_acao.dart';
 
 class Ambientes extends StatefulWidget {
   @override
@@ -17,6 +18,12 @@ class _AmbientesState extends State<Ambientes> {
   int _currentIndex = 0;
 
   @override
+  // ignore: must_call_super
+  void initState() {
+    LimparAmbientes();
+    CarregarAmbiente(idUsuario[posUsuarioAtual[0]]);
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -30,29 +37,32 @@ class _AmbientesState extends State<Ambientes> {
           Expanded(
             child: ListView.separated(
               //Aparência do item da lista
-              itemBuilder: (context, index) {
+              itemBuilder: (BuildContext context, int index) {
                 return ConstrainedBox(
                   constraints: BoxConstraints.tightFor(width: 200, height: 60),
                   child: ElevatedButton(
                     child: Text(ambientesName[index]),
                     onPressed: () {
-                      
+                      Navigator.pushReplacement(
+                        context, 
+                        MaterialPageRoute(builder: (context) => AmbientesAcao(index: index,)));
                     },
                   ),
                 );
               },
+
               //Aparência do divisor
               separatorBuilder: (context, index) {
                 return Divider(
                   color: Colors.blue[100],
                   thickness: 1,
-                );
+                );     
               },
+
               //total de itens da lista
               itemCount: ambientesName.length,
             ),
           ),
-          //inserir as coisas aqui
         ])),
       ),
       bottomNavigationBar: BottomNavigationBar(

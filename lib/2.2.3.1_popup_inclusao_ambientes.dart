@@ -42,12 +42,10 @@ inserirNovoAmbiente(BuildContext context) {
               ));
               i = ambientesName.length;
             } else if ((i + 1) == ambientesName.length) {
-              AdicionarAmbiente(nomeAmbiente.text, comentarioAmbiente.text);
+              AdicionarAmbiente(idUsuario[posUsuarioAtual[0]], nomeAmbiente.text, comentarioAmbiente.text);
               i = ambientesName.length;
-              Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => AmbientesCadastrados()));
+              Navigator.pushReplacement(context,
+                MaterialPageRoute(builder: (context) => AmbientesCadastrados()));
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                 content: Text('O Ambiente foi Inserido com Sucesso!!!'),
                 duration: Duration(seconds: 2),
@@ -55,11 +53,9 @@ inserirNovoAmbiente(BuildContext context) {
             }
           }
         }else{
-          AdicionarAmbiente(nomeAmbiente.text, comentarioAmbiente.text);
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-                builder: (context) => AmbientesCadastrados()));
+          AdicionarAmbiente(idUsuario[posUsuarioAtual[0]], nomeAmbiente.text, comentarioAmbiente.text);
+          Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) => AmbientesCadastrados()));
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Text('O Ambiente foi Inserido com Sucesso!!!'),
             duration: Duration(seconds: 2),

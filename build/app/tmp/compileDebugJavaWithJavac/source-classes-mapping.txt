@@ -1,4 +1,0 @@
-io/flutter/plugins/GeneratedPluginRegistrant.java
- io.flutter.plugins.GeneratedPluginRegistrant
-com/example/home_automation_fap/BuildConfig.java
- com.example.home_automation_fap.BuildConfig

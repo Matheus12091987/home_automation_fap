@@ -3,9 +3,11 @@
 //
 
 import 'package:flutter/material.dart';
+import 'package:home_automation_fap/2.2.2.2_edicao_devices.dart';
 import '0.0_banco_de_dados.dart';
 import '2.0_ambientes.dart';
 import '2.2_config.dart';
+import '2.2.2.1_inclusao_devices.dart';
 
 class DevicesCadastrados extends StatefulWidget {
   @override
@@ -14,6 +16,7 @@ class DevicesCadastrados extends StatefulWidget {
 
 class _DevicesCadastradosState extends State<DevicesCadastrados> {
   int _currentIndex = 0;
+  var tipo = '';
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +33,13 @@ class _DevicesCadastradosState extends State<DevicesCadastrados> {
             child: ListView.separated(
               //Aparência do item da lista
               itemBuilder: (context, index) {
+                if (devicesTipo[index] == 1) {
+                  tipo = 'Facility Start';
+                } else if (devicesTipo[index] == 2) {
+                  tipo = 'Facility IR';
+                } else {
+                  tipo = 'Facility CAM';
+                }
                 return ListTile(
                   title: Row(
                     children: [
@@ -51,7 +61,18 @@ class _DevicesCadastradosState extends State<DevicesCadastrados> {
                         children: [
                           Expanded(
                               child: Text(
-                            'Tipo: ' + devicesTipo[index].toString(),
+                            'Comentário: ' + devicesComentario[index],
+                            overflow: TextOverflow.fade,
+                            maxLines: 2,
+                            softWrap: true,
+                          )),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                              child: Text(
+                            'Tipo: ' + tipo,
                             overflow: TextOverflow.fade,
                             maxLines: 2,
                             softWrap: true,
@@ -100,7 +121,16 @@ class _DevicesCadastradosState extends State<DevicesCadastrados> {
                         icon: Icon(Icons.edit),
                         onPressed: () {
                           setState(() {
-                            //int msg = index;
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => EdicaoDevices(
+                                  passaIndex: index,
+                                  passaId: idDevices[index],
+                                )
+                              )
+                            );
+
                             /*Navigator.push(
                               context, MaterialPageRoute(builder: 
                                 (context) => EdicaoUsuarios(retornando: msg,)
@@ -118,11 +148,11 @@ class _DevicesCadastradosState extends State<DevicesCadastrados> {
                         icon: Icon(Icons.delete),
                         onPressed: () {
                           setState(() {
-                            devicesName.removeAt(index);
+                            /*devicesName.removeAt(index);
                             devicesAddrLocal.removeAt(index);
                             devicesAddrRemoto.removeAt(index);
                             devicesTipo.removeAt(index);
-                            devicesFeedback.removeAt(index);
+                            devicesFeedback.removeAt(index);*/
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                               content: Text('Tarefa removida com sucesso.'),
                               duration: Duration(seconds: 2),
@@ -180,11 +210,8 @@ class _DevicesCadastradosState extends State<DevicesCadastrados> {
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => Ambientes()));
     } else if (_currentIndex == 2) {
-      /*Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => Configuracao()
-        )
-      );*/
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => InclusaoDevices()));
     }
   }
 }

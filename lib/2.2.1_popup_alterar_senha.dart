@@ -13,7 +13,7 @@ alterarSenhaAtual(BuildContext context) {
   senhaAtual.clear();
   novaSenha.clear();
   novaSenhaRepetida.clear();
-  
+
   Widget cancelaButton = TextButton(
     child: Text("Cancelar"),
     onPressed: () {
@@ -31,7 +31,13 @@ alterarSenhaAtual(BuildContext context) {
       if (senhaAtual.text == senhas[posUsuarioAtual[0]]) {
         if (novaSenha.text.isNotEmpty & novaSenhaRepetida.text.isNotEmpty) {
           if (novaSenha.text == novaSenhaRepetida.text) {
-            senhas[posUsuarioAtual[0]]= novaSenha.text;
+            AlterarSenhaUsuario(
+              novaSenha.text, 
+              idUsuario[posUsuarioAtual[0]],
+              posUsuarioAtual[0],
+            );
+
+            senhas[posUsuarioAtual[0]] = novaSenha.text;
             Navigator.pop(context);
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               content: Text('A senha foi alterada com sucesso!!!'),
@@ -61,7 +67,8 @@ alterarSenhaAtual(BuildContext context) {
   );
   //configura o AlertDialog
   AlertDialog alert = AlertDialog(
-    title: Text("Alterar Senha. Usuário: " + usuarios[posUsuarioAtual[0]] + "!!!"),
+    title:
+        Text("Alterar Senha. Usuário: " + usuarios[posUsuarioAtual[0]] + "!!!"),
     content: Container(
         child: SizedBox(
       height: 260,

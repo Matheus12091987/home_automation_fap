@@ -34,7 +34,10 @@ edicaoDoAmbiente(BuildContext context, var indexador) {
         ));
       } else {
         EditarAmbiente(
-              nomeAmbiente.text, comentarioAmbiente.text, indexador);
+              nomeAmbiente.text, 
+              comentarioAmbiente.text,
+              idAmbiente[indexador], 
+              indexador);
         Navigator.pushReplacement(context,
             MaterialPageRoute(builder: (context) => AmbientesCadastrados()));
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(

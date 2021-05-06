@@ -14,8 +14,8 @@ class EdicaoUsuarios extends StatefulWidget {
   EdicaoUsuarios({Key key, @required this.retornando}) : super(key: key);
   @override
   _EdicaoUsuariosState createState() => _EdicaoUsuariosState(
-        retornandoindex: retornando,
-      );
+    retornandoindex: retornando,
+  );
 }
 
 class _EdicaoUsuariosState extends State<EdicaoUsuarios> {
@@ -189,7 +189,8 @@ class _EdicaoUsuariosState extends State<EdicaoUsuarios> {
           valorRadio, 
           valorCheckAmbiente,
           valorCheckDevices, 
-          valorCheckSenha, 
+          valorCheckSenha,
+          idUsuario[retornandoindex], 
           retornandoindex
         );
         Navigator.pushReplacement(context,

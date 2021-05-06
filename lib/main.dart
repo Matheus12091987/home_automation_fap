@@ -20,19 +20,25 @@ class MenuPrincipal extends StatefulWidget {
 class _MenuPrincipal extends State<MenuPrincipal> {
   @override
   void initState() {
+
+    AdicionarDevice('Entrada', 'local de entrada de pessoas', 1,
+        'http://192.168.1.1', 'http://automation.ddns.net:9001', '/status');
+    AdicionarDevice('Cozinha', 'local de cozinhar comida', 1,
+        'http://192.168.1.2', 'http://automation.ddns.net:9002', '/status');
+
     AdicionarUsuario('admin', '179325', 1, true, true, true);
+    AdicionarAmbiente(geralUsuarios[geralUsuarios.length - 1].id,
+        'Entrada/Copa/Sala', 'Ambiente destinado a Convivencia Humana');
+    AdicionarAcoes(1, 1, 1, 'Entrada', 'Luz da entrada', 'Entrada', 1);
+    AdicionarAcoes(1, 1, 2, 'Cozinha', 'Luz da cozinha', 'Cozinha', 2);
+
     AdicionarUsuario('mperes', '1234', 1, true, true, true);
-    AdicionarDevice('Entrada', 1, 'http://192.168.1.1',
-        'http://automation.ddns.net:9001', '/status');
-    AdicionarDevice('Cozinha', 1, 'http://192.168.1.2',
-        'http://automation.ddns.net:9002', '/status');
-    AdicionarAmbiente(
-        'Entrada/Copa/Sala', 'Ambiente destinado a convivência Humana');
-    AdicionarAmbiente('Cozinha/Área de Serviço',
-        'Ambiente destinado a convivência Humana e Animalesca ');
+    AdicionarAmbiente(geralUsuarios[geralUsuarios.length - 1].id,
+        'Entrada/Copa/Sala', 'Ambiente destinado a Convivencia Humana');
+
+    
 
     posUsuarioAtual.add(0);
-    //posicao_Ambiente.add(0);
 
     super.initState();
   }
