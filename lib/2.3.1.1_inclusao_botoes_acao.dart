@@ -186,15 +186,13 @@ class _InclusaoBotoesState extends State<InclusaoBotoes> {
               _valueDropDown,
               valorRadio,
             );
-
             i = devicesName.length;
-
             Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => ConfigBotaoAcao(
-                        ambienteTexto: ambientesName[indexAmbPassado],
-                        ambientePassado: indexAmbPassado)));
+              context,
+              MaterialPageRoute(
+                builder: (context) => ConfigBotaoAcao(
+                  ambienteTexto: ambientesName[indexAmbPassado],
+                  ambientePassado: indexAmbPassado)));
           }
         }
       } else {

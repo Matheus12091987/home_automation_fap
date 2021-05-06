@@ -3,8 +3,8 @@
 //
 
 import 'package:flutter/material.dart';
-import 'package:home_automation_fap/0.0_banco_de_dados.dart';
 
+import '0.0_banco_de_dados.dart';
 import '0.1_popup_acesso_adm.dart';
 import '2.0_ambientes.dart';
 import '2.2.1_popup_alterar_senha.dart';

@@ -49,8 +49,8 @@ class Device {
 
 class Botoes {
   int id;
-  int idUsuario;
   int idAmbiente;
+  int idUsuario;
   int idDevice;
   String nome;
   String comentario;
@@ -59,8 +59,8 @@ class Botoes {
 
   Botoes(
     this.id,
-    this.idUsuario,
     this.idAmbiente,
+    this.idUsuario,
     this.idDevice,
     this.nome,
     this.comentario,
@@ -177,11 +177,44 @@ AlterarSenhaUsuario(var novaSenha, var idUsuario, var indexLocal) {
 
 // ignore: non_constant_identifier_names
 ExcluirUsuario(var idUsu) {
-  /*  sequencia correta de exclusão:
-      1º Botões
-      2º Ambientes
-      3º Usuario
-  */
+  for (int i = (geralBotoes.length - 1); i >= 0; i--) {
+    if (geralBotoes[i].idUsuario == idUsu) {
+      geralBotoes.removeAt(i);
+    }
+  }
+  for (int i = (geralAmbientes.length - 1); i >= 0; i--) {
+    if (geralAmbientes[i].idUsuario == idUsu) {
+      geralAmbientes.removeAt(i);
+    }
+  }
+  for (int i = 0; i < geralUsuarios.length; i++) {
+    if (geralUsuarios[i].id == idUsu) {
+      geralUsuarios.removeAt(i);
+      i = geralUsuarios.length;
+      CarregarUsuarios();
+    }
+  }
+}
+
+// ignore: non_constant_identifier_names
+CarregarUsuarios() {
+  idUsuario.clear();
+  usuarios.clear();
+  senhas.clear();
+  niveisAcesso.clear();
+  criarAmbientes.clear();
+  incluirDevices.clear();
+  alterarSenha.clear();
+
+  for (int i = 0; i < geralUsuarios.length; i++) {
+    idUsuario.add(geralUsuarios[i].id);
+    usuarios.add(geralUsuarios[i].nome);
+    senhas.add(geralUsuarios[i].senha);
+    niveisAcesso.add(geralUsuarios[i].nivelAcesso);
+    criarAmbientes.add(geralUsuarios[i].criarAmbiente);
+    incluirDevices.add(geralUsuarios[i].incluirNovosDevices);
+    alterarSenha.add(geralUsuarios[i].alterarSenha);
+  }
 }
 
 //********************Devices****************************
@@ -293,16 +326,26 @@ AtualizarBaseLocalAmbientes(var indexLocal, var indexBd) {
 }
 
 // ignore: non_constant_identifier_names
-ExcluirAmbientes(var idUsu, var idAmb) {
-  //
-}
-
-// ignore: non_constant_identifier_names
 LimparAmbientes() {
   idAmbiente.clear();
   idUsuAmb.clear();
   ambientesName.clear();
   ambientesComentario.clear();
+}
+
+// ignore: non_constant_identifier_names
+ExcluirAmbientes(var idAmb) {
+  for (int i = (geralBotoes.length - 1); i >= 0; i--) {
+    if (geralBotoes[i].idAmbiente == idAmb) {
+      geralBotoes.removeAt(i);
+    }
+  }
+  for (int i = 0; i < geralAmbientes.length; i++) {
+    if (geralAmbientes[i].id == idAmb) {
+      geralAmbientes.removeAt(i);
+      i = geralAmbientes.length;
+    }
+  }
 }
 
 //**********************Ações*****************************
@@ -311,7 +354,7 @@ AdicionarAcoes(var idAmb, var idUsu, var idDev, var nome, var comentario,
     var deviceName, var saida) {
   if (geralBotoes.length == 0) {
     geralBotoes.add(
-        Botoes(1, idAmb, idUsu, idDev, nome, comentario, deviceName, saida));
+        Botoes(1, idUsu, idAmb, idDev, nome, comentario, deviceName, saida));
   } else {
     geralBotoes.add(Botoes(geralBotoes[geralBotoes.length - 1].id + 1, idAmb,
         idUsu, idDev, nome, comentario, deviceName, saida));
@@ -345,7 +388,6 @@ EditarAcoes(var idBotao, var idDev, var nome, var comentario, var deviceName,
       geralBotoes[i].comentario = comentario;
       geralBotoes[i].nomePlaca = deviceName;
       geralBotoes[i].saidaFisica = saida;
-
       i = geralBotoes.length;
     }
   }
@@ -364,6 +406,11 @@ LimparAcoes() {
 }
 
 // ignore: non_constant_identifier_names
-ExcluirAcoes(var idUsu, var idAmb, var idAct) {
-  //
+ExcluirAcoes(var idAcao) {
+  for (int i = 0; i < geralBotoes.length; i++) {
+    if (geralBotoes[i].id == idAcao) {
+      geralBotoes.removeAt(i);
+      i = geralBotoes.length;
+    }
+  }
 }

@@ -28,7 +28,6 @@ class _AmbientesAcaoState extends State<AmbientesAcao> {
   void initState() {
     LimparAcoes();
     CarregaAcoes(idUsuario[posUsuarioAtual[0]], idAmbiente[indexPassado]);
-    print(indexPassado);
   }
 
   Widget build(BuildContext context) {

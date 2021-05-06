@@ -3,11 +3,12 @@
 //
 
 import 'package:flutter/material.dart';
-import 'package:home_automation_fap/2.2.2.2_edicao_devices.dart';
+
 import '0.0_banco_de_dados.dart';
 import '2.0_ambientes.dart';
 import '2.2_config.dart';
 import '2.2.2.1_inclusao_devices.dart';
+import '2.2.2.2_edicao_devices.dart';
 
 class DevicesCadastrados extends StatefulWidget {
   @override

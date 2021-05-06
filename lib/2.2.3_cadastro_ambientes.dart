@@ -88,8 +88,9 @@ class _AmbientesCadastradosState extends State<AmbientesCadastrados> {
                         icon: Icon(Icons.delete),
                         onPressed: () {
                           setState(() {
-                            ambientesName.removeAt(index);
-                            ambientesComentario.removeAt(index);
+                            ExcluirAmbientes(idAmbiente[index]);
+                            LimparAmbientes();
+                            CarregarAmbiente(idUsuario[posUsuarioAtual[0]]);
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                               content: Text('Tarefa removida com sucesso.'),
                               duration: Duration(seconds: 2),

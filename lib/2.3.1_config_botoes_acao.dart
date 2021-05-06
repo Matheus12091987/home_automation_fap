@@ -135,7 +135,7 @@ class _ConfigBotaoAcaoState extends State<ConfigBotaoAcao> {
                                         passaIdUsu:
                                             idUsuario[posUsuarioAtual[0]],
                                         passaIdBotao: idBotao[index],
-                                        passaIndexBotao:index)));
+                                        passaIndexBotao: index)));
                             //
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                               content: Text('Editar este Botão.'),
@@ -148,11 +148,11 @@ class _ConfigBotaoAcaoState extends State<ConfigBotaoAcao> {
                         icon: Icon(Icons.delete),
                         onPressed: () {
                           setState(() {
-                            /*devicesName.removeAt(index);
-                            devicesAddrLocal.removeAt(index);
-                            devicesAddrRemoto.removeAt(index);
-                            devicesTipo.removeAt(index);
-                            devicesFeedback.removeAt(index);*/
+                            ExcluirAcoes(idBotao[index]);
+                            LimparAcoes();
+                            CarregaAcoes(idUsuario[posUsuarioAtual[0]], 
+                              idAmbiente[indexPassado]
+                            );
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                               content: Text('Botão removido com sucesso.'),
                               duration: Duration(seconds: 2),

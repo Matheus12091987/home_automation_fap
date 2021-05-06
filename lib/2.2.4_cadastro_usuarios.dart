@@ -6,9 +6,9 @@ import 'package:flutter/material.dart';
 
 import '0.0_banco_de_dados.dart';
 import '2.0_ambientes.dart';
-import '2.2.4.2_edicao_usuarios.dart';
 import '2.2_config.dart';
 import '2.2.4.1_inclusao_usuarios.dart';
+import '2.2.4.2_edicao_usuarios.dart';
 
 class UsuariosCadastrados extends StatefulWidget {
   @override
@@ -43,7 +43,8 @@ class _UsuariosCadastradosState extends State<UsuariosCadastrados> {
                 return ListTile(
                   title: Row(
                     children: [
-                      Expanded(child: Text(
+                      Expanded(
+                          child: Text(
                         usuarios[index],
                         style: TextStyle(fontSize: 18),
                         overflow: TextOverflow.fade,
@@ -63,17 +64,20 @@ class _UsuariosCadastradosState extends State<UsuariosCadastrados> {
                       ),
                       Row(
                         children: [
-                          Text('Criar Ambientes: ' + criarAmbientes[index].toString()),
+                          Text('Criar Ambientes: ' +
+                              criarAmbientes[index].toString()),
                         ],
                       ),
                       Row(
                         children: [
-                          Text('Incluir Devices: ' + incluirDevices[index].toString()),
+                          Text('Incluir Devices: ' +
+                              incluirDevices[index].toString()),
                         ],
                       ),
                       Row(
                         children: [
-                          Text('Alterar Senha: ' + alterarSenha[index].toString()),
+                          Text('Alterar Senha: ' +
+                              alterarSenha[index].toString()),
                         ],
                       ),
                     ],
@@ -87,10 +91,11 @@ class _UsuariosCadastradosState extends State<UsuariosCadastrados> {
                           setState(() {
                             int msg = index;
                             Navigator.push(
-                              context, MaterialPageRoute(builder: 
-                                (context) => EdicaoUsuarios(retornando: msg,)
-                              )
-                            );
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => EdicaoUsuarios(
+                                          retornando: msg,
+                                        )));
                           });
                         },
                       ),
@@ -98,16 +103,25 @@ class _UsuariosCadastradosState extends State<UsuariosCadastrados> {
                         icon: Icon(Icons.delete),
                         onPressed: () {
                           setState(() {
-                            usuarios.removeAt(index);
-                            senhas.removeAt(index);
-                            niveisAcesso.removeAt(index);
-                            criarAmbientes.removeAt(index);
-                            incluirDevices.removeAt(index);
-                            alterarSenha.removeAt(index);
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              content: Text('Tarefa removida com sucesso.'),
-                              duration: Duration(seconds: 2),
-                            ));
+                            if(usuarios[index] != 'admin'){
+                              if(idUsuario[index] != idUsuario[posUsuarioAtual[0]]){
+                                ExcluirUsuario(idUsuario[index]);
+                                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                  content: Text('Usuario removido com sucesso.'),
+                                  duration: Duration(seconds: 2),
+                                ));
+                              }else{
+                                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                  content: Text('Você não pode Remover a sí mesmo!!!'),
+                                  duration: Duration(seconds: 2),
+                                ));
+                              }
+                            }else{
+                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                content: Text('O usuario admin não pode ser removido!!!'),
+                                duration: Duration(seconds: 2),
+                              ));
+                            }                              
                           });
                         },
                       ),
