@@ -1,0 +1,4 @@
+#Thu May 06 17:52:50 BRT 2021
+base.0=/home/matheus/ownCloud/Matheus/Faculdade/Aulas_Semestre_1_ano_2021/Programacao_Dispositivos_Moveis/AppHomeAutomation/home_automation_fap/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
+path.0=classes.dex
+renamed.0=classes.dex
